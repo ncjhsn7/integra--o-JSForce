@@ -1,11 +1,13 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {Account} from './account';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
   firstName:string = '';
   accounts:Account[] = [];
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit {
   createAccount(){
     if(this.firstName){
       this.postData(this.firstName);
+      this.getData();
     }
   }
 
@@ -33,6 +36,7 @@ export class AppComponent implements OnInit {
 	getData(){
     return this.http.get(this.url + '/account').subscribe((res:any)=>{
       if(res){
+        console.log(res.totalSize);
         this.accounts = res.records;
       }
     });
@@ -40,10 +44,13 @@ export class AppComponent implements OnInit {
 
   deleteData(id:string){
     this.http.delete(this.url + '/account/' + id).subscribe((res:any)=>{
-      if(res){
-        console.log(res.errors[0]);
+      if(res[0].success){
+        console.log(res.success);
         this.getData();
+      }else{
+        console.log(res[0].errors.message);
       }
+
     });
   }
 }

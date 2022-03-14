@@ -1,4 +1,4 @@
-<!-- <form class="form">
+<form class="form">
   <mat-form-field class="firstName" appearance="fill">
     <mat-label>Name</mat-label>
     <input matInput placeholder="" value="name here!" [(ngModel)]="firstName" name="firstName">
@@ -6,8 +6,14 @@
 </form>
 
 <button mat-flat-button color="primary" (click)="createAccount()"> send! </button>  
-<button mat-flat-button color="primary" (click)="getData()"> get! </button> -->
 
+<mat-toolbar color="primary">
+  <mat-icon>cloud</mat-icon>
+  <span style="margin-left: 2vw">Sales API</span>
+  <span class="example-spacer"></span>
+  <mat-icon>code</mat-icon>
+</mat-toolbar>
+  
 <div *ngFor="let account of accounts" class="example-card" style="width: 65vw;display: block;margin-left: auto;
 margin-right: auto;">
   <mat-card style="margin-top:5vh" class="animate__animated animate__flipInX">
